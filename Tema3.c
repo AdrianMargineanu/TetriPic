@@ -718,17 +718,8 @@ void TASK_3() {
   free(map);
 
 }
-int main(int argc, char* argv[]) {
-
-  if(argc==0){
-    printf("NEED ARGUMENTS\n");
-    return 0;
-  }
-  // if (argv[1][0] == '2') {
+int main() {
   //   TASK_2();
-  // }
-  if (argv[1][0] == '3') {
     TASK_3();
-  }
   return 0;
 }
