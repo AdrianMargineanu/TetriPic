@@ -803,12 +803,7 @@ int main(int argc, char* argv[]) {
     printf("NEED ARGUMENTS\n");
     return 0;
   }
-  if (argv[1][0] == '1') {
-    TASK_1();
-  }
-  if (argv[1][0] == '2') {
-    TASK_2();
-  }
+
   if (argv[1][0] == '3') {
     TASK_3();
   }
