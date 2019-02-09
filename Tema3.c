@@ -503,7 +503,7 @@ void CREATE_IMAGE_PIECE(FILE* fout, char type, int rotation, int height,
   free(image);
 }
 
-//Functia creaza piesele rotite
+//Functia creaza piesele rotite in fisiere bmp, utilizata pentru testare.
 void TASK_2() {
   FILE* fout;
 
