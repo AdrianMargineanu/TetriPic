@@ -718,54 +718,6 @@ void TASK_3() {
   free(map);
 
 }
-//Functia incepe jocul de la o mapa deja existenta
-void TASK_4() {
-  FILE* fin,*fout;
-  int i, j, map_h, map_w,moves;
-  infopixel** map;
-  bmp_fileheader fileheader;
-  bmp_infoheader infoheader;
-
-  fin = fopen("Map.bmp", "rw");
-  fread(&fileheader, sizeof(bmp_fileheader), 1, fin);
-  fread(&infoheader, sizeof(bmp_infoheader), 1, fin);
-  map_w = infoheader.width / 10;
-  map_h = infoheader.height / 10;
-  
-   map = (infopixel**)malloc((map_h) * sizeof(infopixel*));
-  if(map==NULL){
-    printf("ERROR! OUT OF MEMORRY\n");
-  }
-  for (i = 0; i < map_h; i++) {
-    map[i] = (infopixel*)malloc((map_w) * sizeof(infopixel));
-    if(map[i]==NULL){
-    printf("ERROR! OUT OF MEMORRY\n");
-  }
-  }
-  for (i = infoheader.height - 1; i > 0; i--) {
-    for (j = 0; j < infoheader.width; j++) {
-      fread(&map[i / 10][j / 10], sizeof(infopixel), 1, fin);
-    }
-    fseek(fin, ((infoheader.width) % 4), SEEK_CUR);
-  }
-  fclose(fin);
-
-  WHITE_TO_BLACK(map, &map_h, &map_w);
-  fin = fopen("Moves.in", "r");
-  fscanf(fin, "%d", &moves);
-  GAME(fin, map, moves, map_h, map_w);
-
-  fclose(fin);
-  fout = fopen("Game.bmp", "wb");
-  WRITE_HEADER(map_w, map_h, fout);
-  WRITE_PIECE(fout, map, map_h, map_w);
-  fclose(fout);
-  for (i = 0; i < map_h ; i++){
-    free(map[i]);
-  }
-  free(map);
-}
-
 int main(int argc, char* argv[]) {
 
   if(argc==0){
@@ -777,9 +729,6 @@ int main(int argc, char* argv[]) {
   // }
   if (argv[1][0] == '3') {
     TASK_3();
-  }
-  if (argv[1][0] == '4') {
-    TASK_4();
   }
   return 0;
 }
